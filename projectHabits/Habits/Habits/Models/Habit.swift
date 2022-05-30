@@ -1,14 +1,14 @@
 import Foundation
 
+//MARK: - Structures
 struct Habit {
     let name: String
     let category: Category
     let info: String
 }
 
-extension Habit: Codable{
-    
-}
+// MARK: - Extensions
+extension Habit: Codable{ }
 
 extension Habit: Hashable, Comparable {
     static func < (lhs: Habit, rhs: Habit) -> Bool {
@@ -22,6 +22,5 @@ extension Habit: Hashable, Comparable {
     static func == (lhs: Habit, rhs: Habit) -> Bool {
         return lhs.name == rhs.name
     }
-    
 }
 

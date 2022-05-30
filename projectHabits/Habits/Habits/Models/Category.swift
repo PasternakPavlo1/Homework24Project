@@ -1,13 +1,13 @@
 import Foundation
 
+// MARK: - Structures
 struct Category {
     let name: String
     let color: Color
 }
 
-extension Category: Codable {
-    
-}
+// MARK: - Extensions
+extension Category: Codable { }
 
 extension Category: Hashable {
     func hash(into hasher: inout Hasher) {

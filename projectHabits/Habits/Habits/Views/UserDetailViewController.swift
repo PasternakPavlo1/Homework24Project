@@ -1,30 +1,74 @@
-
 import UIKit
 
+// MARK: - Classes
 class UserDetailViewController: UIViewController {
     
+    // MARK: - Outlets
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: - Properties
+    var user: User!
+    var dataSource: DataSourceType!
+    var model = Model()
+    
     var updateTimer: Timer?
-    
-    enum SectionHeader: String {
-        case kind = "SectionHeader"
-        case reuse = "HeaderView"
-    
-        var identifier: String {
-            return rawValue
-        }
-    }
     
     var imageRequestTask: Task<Void, Never>? = nil
     var userStatisticsRequestTask:Task<Void, Never>? = nil
     var habitLeadStatisticsRequestTask:Task<Void, Never>? = nil
+    
     deinit {
         imageRequestTask?.cancel()
         userStatisticsRequestTask?.cancel()
         habitLeadStatisticsRequestTask?.cancel()
     }
     
-    var user: User!
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        userNameLabel.text = user.name
+        bioLabel.text = user.bio
+        
+        imageRequestTask = Task {
+            if let image = try? await ImageRequest(imageID: user.id).send() {
+                self.profileImageView.image = image
+            }
+            imageRequestTask = nil
+        }
+        
+        collectionView.register(NamedSectionHeaderView.self,
+                                forSupplementaryViewOfKind: SectionHeader.kind.identifier,
+                                withReuseIdentifier: SectionHeader.reuse.identifier)
+        dataSource = createDataSource()
+        collectionView.dataSource = dataSource
+        collectionView.collectionViewLayout = createLayout()
+        
+        update()
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        update()
+        
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 1,
+                                           repeats: true) { _ in
+            self.update()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        updateTimer?.invalidate()
+        updateTimer = nil
+    }
+    
+    // MARK: - Initialization
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,6 +80,7 @@ class UserDetailViewController: UIViewController {
     
     typealias DataSourceType = UICollectionViewDiffableDataSource<ViewModel.Section, ViewModel.Item>
     
+    // MARK: - Enums
     enum ViewModel {
         enum Section: Hashable, Comparable {
             case leading
@@ -56,57 +101,13 @@ class UserDetailViewController: UIViewController {
         typealias Item = HabitCount
     }
     
+    // MARK: - Structures
     struct Model {
         var userStats: UserStatistics?
         var leadingStats: UserStatistics?
     }
     
-    var dataSource: DataSourceType!
-    var model = Model()
-    
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        userNameLabel.text = user.name
-        bioLabel.text = user.bio
-        collectionView.register(NamedSectionHeaderView.self, forSupplementaryViewOfKind: SectionHeader.kind.identifier , withReuseIdentifier: SectionHeader.reuse.identifier)
-        
-        dataSource = createDataSource()
-        collectionView.dataSource = dataSource
-        collectionView.collectionViewLayout = createLayout()
-        
-        update()
-        
-        imageRequestTask = Task {
-            if let image = try? await ImageRequest(imageID: user.id).send() {
-                self.profileImageView.image = image
-            }
-            imageRequestTask = nil
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        update()
-    
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.update()
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        updateTimer?.invalidate()
-        updateTimer = nil
-    }
-
-    
+    // MARK: - Methods
     func update() {
         userStatisticsRequestTask?.cancel()
         userStatisticsRequestTask = Task {
@@ -133,7 +134,7 @@ class UserDetailViewController: UIViewController {
             habitLeadStatisticsRequestTask = nil
         }
     }
-    //page 860
+    
     func updateCollectionView() {
         guard let userStatistics = model.userStats,
               let leadingStatistics = model.leadingStats else { return }
@@ -149,7 +150,6 @@ class UserDetailViewController: UIViewController {
             
             partial[section, default: []].append(habitCount)
         }
-        
         itemsBySection = itemsBySection.mapValues { $0.sorted() }
         
         let sectionIDs = itemsBySection.keys.sorted()
@@ -160,7 +160,8 @@ class UserDetailViewController: UIViewController {
     func createDataSource() -> DataSourceType {
         let dataSource = DataSourceType(collectionView: collectionView) {
             (collectionView, indexPath, habitStat) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCount", for: indexPath) as! UICollectionViewListCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCount",
+                                                          for: indexPath) as! UICollectionViewListCell
             
             var content = UIListContentConfiguration.subtitleCell()
             content.text = habitStat.habit.name
@@ -174,7 +175,9 @@ class UserDetailViewController: UIViewController {
         }
         
         dataSource.supplementaryViewProvider = { (collectionView, category, indexPath) in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: "SectionHeader", withReuseIdentifier: "HeaderView", for: indexPath) as! NamedSectionHeaderView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: "SectionHeader",
+                                                                         withReuseIdentifier: "HeaderView",
+                                                                         for: indexPath) as! NamedSectionHeaderView
             
             let section = dataSource.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
@@ -183,41 +186,40 @@ class UserDetailViewController: UIViewController {
             case .category(let category):
                 header.nameLabel.text = category.name
             }
-            
             return header
         }
-        
         return dataSource
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                     leading: 0,
+                                                     bottom: 0,
+                                                     trailing: 12)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(44))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .absolute(44))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item,
+                                                       count: 1)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(36))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: SectionHeader.kind.identifier, alignment: .top)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(36))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                        elementKind: SectionHeader.kind.identifier,
+                                                                        alignment: .top)
         sectionHeader.pinToVisibleBounds = true
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20,
+                                                        leading: 0,
+                                                        bottom: 20,
+                                                        trailing: 0)
         section.boundarySupplementaryItems = [sectionHeader]
         
         return UICollectionViewCompositionalLayout(section: section)
     }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

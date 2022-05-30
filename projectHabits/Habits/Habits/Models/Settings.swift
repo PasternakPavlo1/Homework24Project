@@ -1,7 +1,6 @@
-//MARK: - Importing Frameworks
 import Foundation
 
-//MARK: - Structures
+// MARK: - Structures
 struct Settings {
     static var shared = Settings()
     private let defaults = UserDefaults.standard
@@ -53,7 +52,7 @@ struct Settings {
         followedUserIDs = updated
     }
     
-    //MARK: - Private Methods
+    // MARK: - Private Methods
     private func archiveJSON<T: Encodable>(value: T, key: String) {
         let data = try! JSONEncoder().encode(value)
         let string = String(data: data, encoding: .utf8)
@@ -69,7 +68,7 @@ struct Settings {
     }
 }
 
-//MARK: - Enums
+// MARK: - Enumerations
 enum Setting {
     static let favoriteHabits = "favoriteHabits"
     static let followedUserIDs = "followedUserIDs"

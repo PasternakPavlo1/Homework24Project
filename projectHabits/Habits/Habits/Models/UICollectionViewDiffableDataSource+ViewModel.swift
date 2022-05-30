@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Extensions
 extension UICollectionViewDiffableDataSource {
     func applySnapshotUsing(sectionIDs: [SectionIdentifierType],
                             itemsBySection: [SectionIdentifierType: [ItemIdentifierType]],
@@ -10,6 +11,7 @@ extension UICollectionViewDiffableDataSource {
                            sectionsRetainedIfEmpty: sectionsRetainedIfEmpty)
     }
     
+    // MARK: - Methods
     func applySnapshotUsing(sectionIDs: [SectionIdentifierType], itemsBySection: [SectionIdentifierType: [ItemIdentifierType]], animatingDifferences: Bool,sectionsRetainedIfEmpty: Set<SectionIdentifierType> = Set<SectionIdentifierType>()) {
         var snapshot =
         NSDiffableDataSourceSnapshot<SectionIdentifierType,
