@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Protocols
 protocol APIRequest {
     associatedtype Response
     
@@ -9,6 +10,7 @@ protocol APIRequest {
     var postData: Data? { get }
 }
 
+// MARK: - Extensions
 extension APIRequest {
     var host: String { "localhost" }
     var port: Int { 8080 }
@@ -41,6 +43,7 @@ extension APIRequest {
     }
 }
 
+// MARK: - Enumerations
 enum APIRequestError: Error {
     case itemsNotFound
     case requestFailed

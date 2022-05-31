@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: - Structures
 struct User {
     let id: String
     let name: String
@@ -7,6 +8,7 @@ struct User {
     let bio: String?
 }
 
+// MARK: - Extensions
 extension User: Codable { }
 
 extension User: Hashable {

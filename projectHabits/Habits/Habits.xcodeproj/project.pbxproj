@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		8E9625E02843725200BD9897 /* UserCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625DF2843725200BD9897 /* UserCollectionViewController.swift */; };
 		8E9625E228438DB800BD9897 /* LoggedHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625E128438DB800BD9897 /* LoggedHabit.swift */; };
+		8E9625E42844EF2800BD9897 /* LeaderboardHabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625E32844EF2800BD9897 /* LeaderboardHabitCollectionViewCell.swift */; };
+		8E9625E62844F6ED00BD9897 /* FollowedUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625E52844F6ED00BD9897 /* FollowedUserCollectionViewCell.swift */; };
+		8E9625E82844FA1800BD9897 /* CombinedStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625E72844FA1800BD9897 /* CombinedStatistics.swift */; };
+		8E9625EA2845096700BD9897 /* SupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625E92845096700BD9897 /* SupplementaryView.swift */; };
+		8E9625EC28450E6800BD9897 /* SupplementaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625EB28450E6800BD9897 /* SupplementaryItem.swift */; };
+		8E9625EE28450E9B00BD9897 /* SupplementaryItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625ED28450E9B00BD9897 /* SupplementaryItemType.swift */; };
+		8E9625F028450F7300BD9897 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625EF28450F7300BD9897 /* SectionHeader.swift */; };
+		8E9625F22845127D00BD9897 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9625F12845127D00BD9897 /* Model.swift */; };
 		8E994FE82842220D005D225D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E994FE72842220D005D225D /* User.swift */; };
 		8E994FEA284269E0005D225D /* HabitStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E994FE9284269E0005D225D /* HabitStatistics.swift */; };
 		8E994FEC28426A45005D225D /* UserCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E994FEB28426A45005D225D /* UserCount.swift */; };
@@ -37,6 +45,14 @@
 /* Begin PBXFileReference section */
 		8E9625DF2843725200BD9897 /* UserCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewController.swift; sourceTree = "<group>"; };
 		8E9625E128438DB800BD9897 /* LoggedHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedHabit.swift; sourceTree = "<group>"; };
+		8E9625E32844EF2800BD9897 /* LeaderboardHabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardHabitCollectionViewCell.swift; sourceTree = "<group>"; };
+		8E9625E52844F6ED00BD9897 /* FollowedUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowedUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		8E9625E72844FA1800BD9897 /* CombinedStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedStatistics.swift; sourceTree = "<group>"; };
+		8E9625E92845096700BD9897 /* SupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryView.swift; sourceTree = "<group>"; };
+		8E9625EB28450E6800BD9897 /* SupplementaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryItem.swift; sourceTree = "<group>"; };
+		8E9625ED28450E9B00BD9897 /* SupplementaryItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryItemType.swift; sourceTree = "<group>"; };
+		8E9625EF28450F7300BD9897 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		8E9625F12845127D00BD9897 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8E994FE72842220D005D225D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E994FE9284269E0005D225D /* HabitStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStatistics.swift; sourceTree = "<group>"; };
 		8E994FEB28426A45005D225D /* UserCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCount.swift; sourceTree = "<group>"; };
@@ -75,6 +91,133 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E9625F3284529C800BD9897 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8EAEFD872841253500C89CC7 /* APIRequest.swift */,
+				8EAEFD892841283800C89CC7 /* APIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8E9625F428452B6E00BD9897 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625F12845127D00BD9897 /* Model.swift */,
+				8EAEFD81284123D400C89CC7 /* Habit.swift */,
+				8EAEFD832841241C00C89CC7 /* Category.swift */,
+				8EAEFD852841246800C89CC7 /* Color.swift */,
+				8EAEFD8B28413C8200C89CC7 /* Settings.swift */,
+				8E994FE72842220D005D225D /* User.swift */,
+				8EAEFD8D2841419D00C89CC7 /* UICollectionViewDiffableDataSource+ViewModel.swift */,
+				8E994FE9284269E0005D225D /* HabitStatistics.swift */,
+				8E994FEB28426A45005D225D /* UserCount.swift */,
+				8E994FED28429F43005D225D /* UserStatistics.swift */,
+				8E994FEF28429F7E005D225D /* HabitCount.swift */,
+				8E9625E128438DB800BD9897 /* LoggedHabit.swift */,
+				8E9625E72844FA1800BD9897 /* CombinedStatistics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E9625F528452C1300BD9897 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625FB28452D2C00BD9897 /* FollowedUserCollectionView */,
+				8E9625FA28452D0200BD9897 /* LeaderboardHabitCollectionView */,
+				8E9625F928452CAC00BD9897 /* UserCollectionView */,
+				8E9625F828452C9600BD9897 /* LogHabitCollectionView */,
+				8E9625F728452C7500BD9897 /* HabitCollectionView */,
+				8E9625F628452C4F00BD9897 /* HomeCollectionView */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		8E9625F628452C4F00BD9897 /* HomeCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8EAEFD7528411FA700C89CC7 /* HomeCollectionViewController.swift */,
+			);
+			path = HomeCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625F728452C7500BD9897 /* HabitCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8EAEFD7728411FCC00C89CC7 /* HabitCollectionViewController.swift */,
+			);
+			path = HabitCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625F828452C9600BD9897 /* LogHabitCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8EAEFD7B2841203D00C89CC7 /* LogHabitCollectionViewController.swift */,
+			);
+			path = LogHabitCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625F928452CAC00BD9897 /* UserCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625DF2843725200BD9897 /* UserCollectionViewController.swift */,
+			);
+			path = UserCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625FA28452D0200BD9897 /* LeaderboardHabitCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625E32844EF2800BD9897 /* LeaderboardHabitCollectionViewCell.swift */,
+			);
+			path = LeaderboardHabitCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625FB28452D2C00BD9897 /* FollowedUserCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625E52844F6ED00BD9897 /* FollowedUserCollectionViewCell.swift */,
+			);
+			path = FollowedUserCollectionView;
+			sourceTree = "<group>";
+		};
+		8E9625FC28452D4900BD9897 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8EAEFD8F28414EA500C89CC7 /* NamedSectionHeaderView.swift */,
+				8EAEFD7D284121D000C89CC7 /* HabitDetailViewController.swift */,
+				8EAEFD7F284121F100C89CC7 /* UserDetailViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8E9625FD28452D9A00BD9897 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625FF28452DDA00BD9897 /* Enums */,
+				8E9625FE28452DA900BD9897 /* Protocols */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8E9625FE28452DA900BD9897 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625EB28450E6800BD9897 /* SupplementaryItem.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8E9625FF28452DDA00BD9897 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				8E9625EF28450F7300BD9897 /* SectionHeader.swift */,
+				8E9625E92845096700BD9897 /* SupplementaryView.swift */,
+				8E9625ED28450E9B00BD9897 /* SupplementaryItemType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		8EAEFD552840E56A00C89CC7 = {
 			isa = PBXGroup;
 			children = (
@@ -94,32 +237,17 @@
 		8EAEFD602840E56A00C89CC7 /* Habits */ = {
 			isa = PBXGroup;
 			children = (
+				8E9625FD28452D9A00BD9897 /* Common */,
+				8E9625FC28452D4900BD9897 /* Views */,
+				8E9625F528452C1300BD9897 /* Flows */,
+				8E9625F428452B6E00BD9897 /* Models */,
+				8E9625F3284529C800BD9897 /* API */,
 				8EAEFD612840E56A00C89CC7 /* AppDelegate.swift */,
 				8EAEFD632840E56A00C89CC7 /* SceneDelegate.swift */,
 				8EAEFD672840E56A00C89CC7 /* Main.storyboard */,
 				8EAEFD6A2840E56B00C89CC7 /* Assets.xcassets */,
 				8EAEFD6C2840E56B00C89CC7 /* LaunchScreen.storyboard */,
 				8EAEFD6F2840E56B00C89CC7 /* Info.plist */,
-				8EAEFD7528411FA700C89CC7 /* HomeCollectionViewController.swift */,
-				8EAEFD7728411FCC00C89CC7 /* HabitCollectionViewController.swift */,
-				8EAEFD7B2841203D00C89CC7 /* LogHabitCollectionViewController.swift */,
-				8E9625DF2843725200BD9897 /* UserCollectionViewController.swift */,
-				8EAEFD7D284121D000C89CC7 /* HabitDetailViewController.swift */,
-				8EAEFD7F284121F100C89CC7 /* UserDetailViewController.swift */,
-				8EAEFD81284123D400C89CC7 /* Habit.swift */,
-				8EAEFD832841241C00C89CC7 /* Category.swift */,
-				8EAEFD852841246800C89CC7 /* Color.swift */,
-				8EAEFD872841253500C89CC7 /* APIRequest.swift */,
-				8EAEFD892841283800C89CC7 /* APIService.swift */,
-				8EAEFD8B28413C8200C89CC7 /* Settings.swift */,
-				8EAEFD8D2841419D00C89CC7 /* UICollectionViewDiffableDataSource+ViewModel.swift */,
-				8EAEFD8F28414EA500C89CC7 /* NamedSectionHeaderView.swift */,
-				8E994FE72842220D005D225D /* User.swift */,
-				8E994FE9284269E0005D225D /* HabitStatistics.swift */,
-				8E994FEB28426A45005D225D /* UserCount.swift */,
-				8E994FED28429F43005D225D /* UserStatistics.swift */,
-				8E994FEF28429F7E005D225D /* HabitCount.swift */,
-				8E9625E128438DB800BD9897 /* LoggedHabit.swift */,
 			);
 			path = Habits;
 			sourceTree = "<group>";
@@ -202,16 +330,24 @@
 				8EAEFD8E2841419D00C89CC7 /* UICollectionViewDiffableDataSource+ViewModel.swift in Sources */,
 				8EAEFD862841246800C89CC7 /* Color.swift in Sources */,
 				8EAEFD9028414EA500C89CC7 /* NamedSectionHeaderView.swift in Sources */,
+				8E9625EC28450E6800BD9897 /* SupplementaryItem.swift in Sources */,
 				8EAEFD8C28413C8200C89CC7 /* Settings.swift in Sources */,
 				8E994FE82842220D005D225D /* User.swift in Sources */,
+				8E9625E62844F6ED00BD9897 /* FollowedUserCollectionViewCell.swift in Sources */,
+				8E9625F028450F7300BD9897 /* SectionHeader.swift in Sources */,
 				8E994FEE28429F43005D225D /* UserStatistics.swift in Sources */,
 				8EAEFD80284121F100C89CC7 /* UserDetailViewController.swift in Sources */,
 				8EAEFD7828411FCC00C89CC7 /* HabitCollectionViewController.swift in Sources */,
+				8E9625F22845127D00BD9897 /* Model.swift in Sources */,
+				8E9625E42844EF2800BD9897 /* LeaderboardHabitCollectionViewCell.swift in Sources */,
 				8EAEFD622840E56A00C89CC7 /* AppDelegate.swift in Sources */,
+				8E9625EE28450E9B00BD9897 /* SupplementaryItemType.swift in Sources */,
 				8E9625E02843725200BD9897 /* UserCollectionViewController.swift in Sources */,
+				8E9625E82844FA1800BD9897 /* CombinedStatistics.swift in Sources */,
 				8E994FEA284269E0005D225D /* HabitStatistics.swift in Sources */,
 				8E994FF028429F7E005D225D /* HabitCount.swift in Sources */,
 				8EAEFD7C2841203D00C89CC7 /* LogHabitCollectionViewController.swift in Sources */,
+				8E9625EA2845096700BD9897 /* SupplementaryView.swift in Sources */,
 				8EAEFD82284123D400C89CC7 /* Habit.swift in Sources */,
 				8EAEFD8A2841283800C89CC7 /* APIService.swift in Sources */,
 				8EAEFD7E284121D000C89CC7 /* HabitDetailViewController.swift in Sources */,

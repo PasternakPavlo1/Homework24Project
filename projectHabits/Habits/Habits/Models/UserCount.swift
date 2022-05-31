@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: - Structures
 struct UserCount {
     let user: User
     let count: Int
@@ -13,6 +14,7 @@ struct UserCount {
     }
 }
 
+// MARK: - Extensions
 extension UserCount: Codable { }
 
 extension UserCount: Hashable { }

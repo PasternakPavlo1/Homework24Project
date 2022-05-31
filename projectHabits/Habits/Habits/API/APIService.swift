@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Structures
 struct HabitRequest: APIRequest {
     typealias Response = [String: Habit]
 
@@ -74,5 +75,11 @@ struct LogHabitRequest: APIRequest {
         encoder.dateEncodingStrategy = .iso8601
         return try! encoder.encode(loggedHabit)
     }
+}
+
+struct CombinedStatisticsRequest: APIRequest {
+    typealias Response = CombinedStatistics
+
+    var path: String { "/combinedStats" }
 }
 

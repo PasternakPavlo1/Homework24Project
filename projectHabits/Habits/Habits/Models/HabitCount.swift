@@ -1,10 +1,12 @@
 import Foundation
 
+// MARK: - Structures
 struct HabitCount {
     let habit: Habit
     let count: Int
 }
 
+// MARK: - Extensions
 extension HabitCount: Codable { }
 
 extension HabitCount: Hashable {
