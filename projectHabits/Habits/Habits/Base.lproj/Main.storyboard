@@ -105,14 +105,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rop-U8-opf">
-                                            <rect key="frame" x="164" y="63.5" width="240" height="1"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="0U1-wg-HNO"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="8y5-ZO-mst" secondAttribute="trailing" constant="8" id="5rx-Y7-1Q1"/>
@@ -120,9 +112,6 @@
                                         <constraint firstItem="8y5-ZO-mst" firstAttribute="top" secondItem="rRs-aG-keR" secondAttribute="bottom" constant="16" id="Ni7-r5-CQ0"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rRs-aG-keR" secondAttribute="trailing" constant="8" id="OU2-2q-2rD"/>
                                         <constraint firstAttribute="bottom" secondItem="8y5-ZO-mst" secondAttribute="bottom" constant="8" id="TZM-By-aga"/>
-                                        <constraint firstItem="Rop-U8-opf" firstAttribute="leading" secondItem="rRs-aG-keR" secondAttribute="trailing" constant="81.5" id="fO2-eP-oWO"/>
-                                        <constraint firstItem="Rop-U8-opf" firstAttribute="centerY" secondItem="tjd-4f-tse" secondAttribute="centerY" id="g67-yF-CGW"/>
-                                        <constraint firstItem="Rop-U8-opf" firstAttribute="trailing" secondItem="8y5-ZO-mst" secondAttribute="trailing" id="h9L-R0-4Ja"/>
                                         <constraint firstItem="8y5-ZO-mst" firstAttribute="leading" secondItem="rRs-aG-keR" secondAttribute="leading" constant="24" id="hPj-b1-uBm"/>
                                         <constraint firstItem="rRs-aG-keR" firstAttribute="top" secondItem="tjd-4f-tse" secondAttribute="top" constant="8" id="v8h-VG-Khx"/>
                                     </constraints>
@@ -502,9 +491,6 @@
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
